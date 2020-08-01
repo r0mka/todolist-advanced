@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TodoCreateForm from './TodoCreateForm';
+import TodoList from './TodoList';
+import { v4 as uuid } from 'uuid';
 
-function App() {
+const initialList = [
+  {
+    id: uuid(),
+    title: 'first Todo',
+    done: false,
+  },
+  {
+    id: uuid(),
+    title: 'second Todo',
+    done: false,
+  },
+  {
+    id: uuid(),
+    title: 'third Todo',
+    done: false,
+  },
+];
+
+export default function App() {
+  const [list, setList] = useState(initialList);
+
+  const create = (newTitle) =>
+    setList([...list, { id: uuid(), title: newTitle, done: false }]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoCreateForm create={create} />
+      <TodoList list={list} />
     </div>
   );
 }
-
-export default App;
