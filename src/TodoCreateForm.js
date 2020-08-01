@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
 
 export default function TodoCreateForm(props) {
   const [inputValue, setInputValue] = useState('');
@@ -14,7 +13,9 @@ export default function TodoCreateForm(props) {
   return (
     <form onSubmit={handleSumbit}>
       <input type="text" value={inputValue} onChange={handleChange} />
-      <button type="submit">Create</button>
+      <button disabled={inputValue === ''} type="submit">
+        Create
+      </button>
     </form>
   );
 }
