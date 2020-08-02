@@ -53,7 +53,7 @@ export const bubbles = {
 export const simple = {
   particles: {
     number: {
-      value: 50,
+      value: 0,
     },
     size: {
       value: 3,

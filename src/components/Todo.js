@@ -60,7 +60,7 @@ export default function Todo({
       </div>
       {result}
       <div className="Todo-buttons">
-        <button onClick={() => setIsEditing(true)}>
+        <button onClick={() => setIsEditing(!isEditing)}>
           <FaPencilAlt />
         </button>
         <button onClick={() => destroy(id)}>
