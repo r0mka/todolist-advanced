@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import './TodoCreateForm.css';
 
 export default function TodoCreateForm(props) {
   const [inputValue, setInputValue] = useState('');
 
-  const handleChange = (e) => setInputValue(e.target.value);
-
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     props.create(inputValue);
     setInputValue('');
   };
   return (
-    <form onSubmit={handleSumbit}>
-      <input type="text" value={inputValue} onChange={handleChange} />
+    <form onSubmit={handleSubmit} className="TodoCreateForm">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
       <button disabled={inputValue === ''} type="submit">
-        Create
+        Create New Todo
       </button>
     </form>
   );
