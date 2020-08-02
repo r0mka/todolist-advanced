@@ -16,7 +16,7 @@ export default function TodoList() {
   const todos = list.map((todo, index, list) => (
     <Todo
       id={todo.id}
-      // key={todo.id}
+      key={todo.id}
       position={{ index, last: list.length - 1 }}
       title={todo.title}
       done={todo.done}
