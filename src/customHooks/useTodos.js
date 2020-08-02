@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import arrayMove from 'array-move';
 
 export const useTodos = (initialTodos) => {
   const [list, setList] = useState(initialTodos);
@@ -44,5 +45,9 @@ export const useTodos = (initialTodos) => {
     setList(updatedList);
   };
 
-  return { list, create, update, destroy, toggleDone, move };
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setList((items) => arrayMove(items, oldIndex, newIndex));
+  };
+
+  return { list, create, update, destroy, toggleDone, move, onSortEnd };
 };

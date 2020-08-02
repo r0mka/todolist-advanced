@@ -1,37 +1,65 @@
 import React from 'react';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import './TodoList.css';
-import arrayMove from 'array-move';
-import Todo from './Todo';
-import TodoCreateForm from './TodoCreateForm';
-import { v4 as uuid } from 'uuid';
-import { useTodos } from '../customHooks/useTodos';
+import { SortableContainer } from 'react-sortable-hoc';
 import { initialList } from '../data/initialList';
+import TodoCreateForm from './TodoCreateForm';
+import { useTodos } from '../customHooks/useTodos';
+import SortableTodo from './SortableTodo';
+
+const SortableList = SortableContainer(
+  ({ list, update, destroy, toggleDone, move }) => {
+    return (
+      <ul>
+        {list.map((todo, index) => (
+          <SortableTodo
+            key={todo.id}
+            list={list}
+            index={index}
+            position={{ index: index, last: list.length - 1 }}
+            id={todo.id}
+            title={todo.title}
+            done={todo.done}
+            update={update}
+            destroy={destroy}
+            toggleDone={toggleDone}
+            move={move}
+          />
+        ))}
+      </ul>
+    );
+  }
+);
 
 export default function TodoList() {
-  const { list, create, update, destroy, toggleDone, move } = useTodos(
-    initialList
-  );
+  const {
+    list,
+    create,
+    update,
+    destroy,
+    toggleDone,
+    move,
+    onSortEnd,
+  } = useTodos(initialList);
 
-  const todos = list.map((todo, index, list) => (
-    <Todo
-      id={todo.id}
-      key={todo.id}
-      position={{ index, last: list.length - 1 }}
-      title={todo.title}
-      done={todo.done}
-      update={update}
-      destroy={destroy}
-      toggleDone={toggleDone}
-      move={move}
-    />
-  ));
+  const shouldCancelStart = (e) => {
+    const nodeNames = ['svg', 'path', 'BUTTON', 'INPUT'];
+    if (nodeNames.includes(e.target.nodeName)) return true;
+  };
 
   return (
     <div className="TodoList">
       <h1>TodoList</h1>
       <TodoCreateForm create={create} />
-      <ul className="TodoList">{todos}</ul>
+      <SortableList
+        list={list}
+        update={update}
+        destroy={destroy}
+        toggleDone={toggleDone}
+        move={move}
+        onSortEnd={onSortEnd}
+        shouldCancelStart={shouldCancelStart}
+        helperClass="text-color-during-drag"
+      />
     </div>
   );
 }
