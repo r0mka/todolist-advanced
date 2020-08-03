@@ -25,12 +25,8 @@ export default function Background() {
 
   const changeBackground = (index) => {
     setCurrentBackgroundIndex(index);
-    setParticleQuantity(
-      backgrounds[currentBackgroundIndex].params.particles.number.value
-    );
-    setParticleSize(
-      backgrounds[currentBackgroundIndex].params.particles.size.value
-    );
+    setParticleQuantity(backgrounds[index].params.particles.number.value);
+    setParticleSize(backgrounds[index].params.particles.size.value);
   };
 
   const changeParticeQuantity = (e) => {
