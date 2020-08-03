@@ -3,7 +3,7 @@ export const initialList = [
   {
     id: uuid(),
     title: 'Learn JavaScript',
-    done: false,
+    done: true,
   },
   {
     id: uuid(),

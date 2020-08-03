@@ -4,7 +4,6 @@
   max-width: 650px;
   background: rgb(53, 73, 93);
   color: #fff;
-  /* box-shadow: -20px -20px 0px 0px rgba(100, 100, 100, 0.1); */
   overflow: hidden;
 }
 .TodoList ul {
@@ -16,7 +15,7 @@
   font-weight: normal;
   font-size: 2.6rem;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
   text-align: center;
 }
 .TodoList h1 span {

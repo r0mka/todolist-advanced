@@ -1,9 +1,9 @@
 import React from 'react';
 import './TodoList.css';
-import { SortableContainer } from 'react-sortable-hoc';
 import { initialList } from '../data/initialList';
-import TodoCreateForm from './TodoCreateForm';
 import { useTodos } from '../customHooks/useTodos';
+import TodoCreateForm from './TodoCreateForm';
+import { SortableContainer } from 'react-sortable-hoc';
 import SortableTodo from './SortableTodo';
 
 const SortableList = SortableContainer(

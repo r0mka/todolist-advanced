@@ -1,4 +1,5 @@
-export const bubbles = {
+import { v4 as uuid } from 'uuid';
+const bubbles = {
   particles: {
     number: {
       value: 160,
@@ -50,10 +51,10 @@ export const bubbles = {
   },
 };
 
-export const simple = {
+const simple = {
   particles: {
     number: {
-      value: 0,
+      value: 100,
     },
     size: {
       value: 3,
@@ -68,3 +69,99 @@ export const simple = {
     },
   },
 };
+
+const snow = {
+  particles: {
+    number: {
+      value: 160,
+      density: {
+        enable: false,
+      },
+    },
+    size: {
+      value: 10,
+      random: true,
+    },
+    move: {
+      direction: 'bottom',
+      out_mode: 'out',
+    },
+    line_linked: {
+      enable: false,
+    },
+  },
+  interactivity: {
+    events: {
+      onclick: {
+        enable: true,
+        mode: 'remove',
+      },
+    },
+    modes: {
+      remove: {
+        particles_nb: 10,
+      },
+    },
+  },
+};
+
+const nightSky = {
+  particles: {
+    number: {
+      value: 60,
+      density: {
+        enable: true,
+        value_area: 1500,
+      },
+    },
+    line_linked: {
+      enable: true,
+      opacity: 0.02,
+    },
+    move: {
+      direction: 'right',
+      speed: 0.05,
+    },
+    size: {
+      value: 1,
+    },
+    opacity: {
+      anim: {
+        enable: true,
+        speed: 1,
+        opacity_min: 0.05,
+      },
+    },
+  },
+  interactivity: {
+    events: {
+      onclick: {
+        enable: true,
+        mode: 'push',
+      },
+    },
+    modes: {
+      push: {
+        particles_nb: 1,
+      },
+    },
+  },
+  retina_detect: true,
+};
+
+const particlesJsParams = {
+  simple,
+  bubbles,
+  snow,
+  nightSky,
+};
+
+const arrayOfParticleJsConfigObjects = Object.keys(particlesJsParams).map(
+  (particle) => ({
+    id: uuid(),
+    name: particle,
+    params: particlesJsParams[particle],
+  })
+);
+
+export default arrayOfParticleJsConfigObjects;
